@@ -1,0 +1,51 @@
+import numpy as np
+
+
+#para respostas binárias
+#para casos linearmente separáveis
+def stepFunction(soma):
+    if (soma >= 1):
+        return 1
+    return 0
+
+#para previsões de 0 a 100
+#para problemas de classificação binária
+def sigmoidFunction(soma):
+    return 1 /(1+np.exp(-soma))
+
+
+#para respostas diretas, mas que variam entre -1 e 1
+#para casos não lineares
+#para classificação
+def tahnFunction(soma):
+    return (np.exp(soma) - np.exp(-soma)) / ((np.exp(soma) + (np.exp(-soma))))
+
+
+#para redes neurais convulucionais
+#melhor em base de dados que não tem muitos valores negativos
+#para uma rnn com muitas camadas ocultas
+def reluFunction(soma):
+    if soma >= 0:
+        return soma
+    return 0
+
+#utilizada em problemas de regressão
+def linearFunction(soma):
+    return soma
+    
+#IMPORTANTE!!!!
+#para retornar probabilidade em casos com mais de duas classes
+#para problemas de clasificação com mais de duas classes
+def softmaxFunction(x):
+    ex = np.exp(x)
+    return ex / ex.sum()
+
+
+teste = stepFunction(-1)
+teste = sigmoidFunction(2.1)
+teste = tahnFunction(2.1)
+teste = reluFunction(2.1)
+teste = linearFunction(2.1)
+
+valores = [7.0, 2.0, 1.3]
+print(softmaxFunction(valores))
